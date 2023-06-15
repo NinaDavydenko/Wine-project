@@ -1,0 +1,141 @@
+﻿@model WineProject.Models.Wine
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <img src=@Html.DisplayFor(model => model.ImageWine) alt=@Html.DisplayFor(model => model.Name)>
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductionYear)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductionYear)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Brand)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Volume)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Volume)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Color)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Color.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Country.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GrapeVariety)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GrapeVariety.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sweetness)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sweetness.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Potential)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Potential)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+<p>
+    @using Microsoft.AspNet.Identity
+    @if (Request.IsAuthenticated)
+    {
+        @Html.AntiForgeryToken()
+
+        if (User.IsInRole("admin"))
+        {
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = ViewBag.ID }, new { @class = "light-button" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = ViewBag.ID }, new { @class = "light-red-button" }) |
+            @Html.ActionLink("Back", "Index", null, new { @class = "light-button" })
+        </p>
+    }
+    else if (User.IsInRole("user"))
+    {
+        <p>
+            @Html.ActionLink("Add To Cart", "AddCart", new { wineId = ViewBag.ID }, new { @class = "addcart-button" }) |
+            @Html.ActionLink("Buy", "NewOrder", new { wineId = ViewBag.ID }, new { @class = "buy-button" }) |
+            @Html.ActionLink("Back", "Index", null, new { @class = "light-button" })
+        </p>
+    }
+}
+else
+{
+    <p>
+        @Html.ActionLink("Back", "Index", null, new { @class = "light-button" })
+    </p>
+}
+
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    </p>

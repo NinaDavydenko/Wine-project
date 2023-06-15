@@ -1,0 +1,15 @@
+﻿@model WineProject.Models.Order
+
+@{
+    ViewBag.Title = "OrderSuccess";
+}
+
+<h2>Order Success</h2>
+
+<div>
+    @Html.ActionLink("Back", "Index", null, new { @class = "light-button" })
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

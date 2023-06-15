@@ -1,0 +1,129 @@
+﻿@model IndexWineViewModel
+@using WineProject.Models
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Index";
+}
+<link rel="stylesheet" href="~/Content/site.css" />
+
+<h2>Wine</h2>
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    @Html.AntiForgeryToken()
+
+    if (User.IsInRole("admin"))
+    {
+        <p>
+            @Html.ActionLink("Create New", "Create", null, new { @class = "light-button" })
+        </p>
+    }
+    else if (User.IsInRole("user"))
+    {
+        <p>
+            @Html.ActionLink("Cart", "Cart", null, new { @class = "light-button" })
+        </p>
+    }
+}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-3" style="width:15%; display: inline-block;">
+            <form class="form-horizontal col-4" style="width:100%;">
+                <label>Виберіть колір:</label>
+                <select name="colorId" class="form-control">
+                    @foreach (Color c in Model.Colors)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+                <label>Виберіть виробника:</label>
+                <select name="brandId" class="form-control">
+                    @foreach (Brand c in Model.Brands)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+                <label>Виберіть країну походження:</label>
+                <select name="countryId" class="form-control">
+                    @foreach (Country c in Model.Countries)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+                <label>Виберіть сорт винограду:</label>
+                <select name="grapeId" class="form-control">
+                    @foreach (GrapeVariety c in Model.GrapeVarieties)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+                <label>Виберіть солодкість:</label>
+                <select name="sweetnessId" class="form-control">
+                    @foreach (Sweetness c in Model.Sweetnesses)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+                <label>Виберіть тип:</label>
+                <select name="typeId" class="form-control">
+                    @foreach (WineProject.Models.Type c in Model.Types)
+                    {
+                        <option value="@c.Id">@c.Name</option>
+                    }
+                </select>
+                <input type="submit" class="btn btn-default" />
+            </form>
+        </div>
+        <div class="col-4" style="width: 80%; display: inline-block; vertical-align: top;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: space-evenly; ">
+                @foreach (var item in Model.PagedWines)
+                {
+                    <div class="product-item">
+                        <img src=@Html.DisplayFor(modelItem => item.ImageWine) alt=@Html.DisplayFor(modelItem => item.Name)>
+                        <div class="product-list">
+                            <h3 class="card-title">@Html.DisplayFor(modelItem => item.ProductionYear) @Html.DisplayFor(modelItem => item.Brand.Name) @Html.DisplayFor(modelItem => item.Name) @Html.DisplayFor(modelItem => item.Volume)l</h3>
+                            <h6 class="card-subtitle mb-2 text-muted">Країна: @Html.DisplayFor(modelItem => item.Country.Name) <br />Солодкість: @Html.DisplayFor(modelItem => item.Sweetness.Name) <br />Тип: @Html.DisplayFor(modelItem => item.Type.Name) <br />Колір: @Html.DisplayFor(modelItem => item.Color.Name)</h6>
+                            <span class="price">$@Html.DisplayFor(modelItem => item.Price)</span>
+                            @using Microsoft.AspNet.Identity
+                            @if (Request.IsAuthenticated)
+                            {
+                                @Html.AntiForgeryToken()
+
+                                if (User.IsInRole("admin"))
+                                {
+                                    <p>
+                                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "light-button" }) |
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "light-button" }) |
+                                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "light-red-button" })
+                                    </p>
+                                }
+                                else if (User.IsInRole("user"))
+                                {
+                                    <p>
+                                        @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "light-button" }) |
+                                        @Html.ActionLink("Add To Cart", "AddCart", new { wineId = item.Id }, new { @class = "addcart-button" }) |
+                                        @Html.ActionLink("Buy", "NewOrder", new { wineId = item.Id }, new { @class = "buy-button" })
+                                    </p>
+                                }
+                            }
+                            else
+                            {
+                                <p>
+                                    @Html.ActionLink("Details", "Details", new { id = item.Id }, new { @class = "light-button" })
+                                </p>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+</div>
+<div style="margin-left: 20%;">
+    Сторінка @(Model.PagedWines.PageCount < Model.PagedWines.PageNumber ? 0 : Model.PagedWines.PageNumber) з @Model.PagedWines.PageCount
+
+    @Html.PagedListPager(Model.PagedWines, page => Url.Action("Index", new { page }))
+</div>
