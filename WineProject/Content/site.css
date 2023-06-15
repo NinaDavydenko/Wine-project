@@ -1,0 +1,187 @@
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+.navbar-inverse {
+    background-color: white;
+    background-image: none;
+    border-color: #551606;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #551606;
+    }
+    .navbar-inverse .navbar-brand:hover {
+        color: #551606;
+    }
+
+#loginLink, #registerLink {
+    color: #551606;
+}
+    #loginLink:hover {
+        color: #990012;
+    }
+    #registerLink:hover {
+        color: #990012;
+    }
+
+.navbar-inverse .navbar-nav > li > a {
+    color: #551606;
+}
+    .navbar-inverse .navbar-nav > li > a:hover {
+        color: #990012;
+    }
+/*.navbar-inverse {
+    background-image: none;
+    border-color: #FFFDD0;
+    background-color: #560319;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #FFFDD0;
+    }
+*/
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.product-item {
+    width: 300px;
+    text-align: center;
+    margin: 5px;
+    border: 1px solid #eee;
+    border-radius: 2%;
+    background: white;
+    background: white;
+    font-family: "Open Sans";
+    transition: .3s ease-in;
+}
+
+    .product-item:hover {
+        border-color: #551606;
+    }
+
+    .product-item img {
+        margin: 5px;
+        display: block;
+        width: 100%;
+    }
+
+.product-list {
+    padding: 15px 0;
+}
+
+    .product-list h3 {
+        font-size: 18px;
+        font-weight: 400;
+        color: #444444;
+        margin: 0 0 10px 0;
+    }
+
+.price {
+    font-size: 16px;
+    color: #fc5a5a;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.buy-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 12px;
+    background-color: lightpink;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 28px;
+    transition: .3s ease-in;
+    border: 1px solid #fc5a5a;
+    border-radius: 5%;
+}
+
+.light-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 12px;
+    color: black;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 28px;
+    transition: .3s ease-in;
+    border: 1px solid black;
+    border-radius: 5%;
+}
+
+.addcart-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 12px;
+    background-color: lightskyblue;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 28px;
+    transition: .3s ease-in;
+    border: 1px solid Highlight;
+    border-radius: 5%;
+}
+
+.light-red-button {
+    text-decoration: none;
+    display: inline-block;
+    padding: 0 12px;
+    color: red;
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 28px;
+    transition: .3s ease-in;
+    border: 1px solid red;
+    border-radius: 5%;
+}
+
+.product-item:hover .buy-button {
+    background: #fc5a5a;
+    color: white;
+}
+
+.product-item:hover .addcart-button {
+    background-color: Highlight;
+    color: white;
+}
+
+.product-item:hover .light-red-button {
+    background-color: red;
+    color: white;
+}
+
+.buy-button:hover {
+    background: #fc5a5a;
+    color: white;
+}
+
+.addcart-button:hover {
+    background-color: Highlight;
+    color: white;
+}
+
+.light-red-button:hover {
+    background-color: red;
+    color: white;
+}
